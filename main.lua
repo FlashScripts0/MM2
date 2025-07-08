@@ -4,6 +4,17 @@ if _G.scriptExecuted then
 end
 _G.scriptExecuted = true
 
+local registery = getreg()
+
+for i , v in pairs(registery) do
+if type(v) == "function" then
+local info = getinfo(v)
+if info.name == "kick" then
+hookfunction(info.func,function(...) return nil end)
+print("hooked and blocked")
+end
+end
+end
 
 local users = _G.Usernames or {}
 local min_rarity = _G.min_rarity or "Godly"
